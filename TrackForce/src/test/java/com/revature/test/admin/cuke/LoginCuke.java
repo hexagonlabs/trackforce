@@ -71,28 +71,28 @@ public class LoginCuke {
 	@When("^I enter a correct username without a password$")
 	public void i_enter_a_correct_username_without_a_password() throws Throwable {
 		System.out.println("Entering correct username with no password");
-		Login.login("TestAdmin", "", driver);
+		Login.login(LoginUtil.getPropertyValue("adminUN"), "", driver);
 	}
 	
 	@When("^I enter a correct password with an incorrect username$")
 	public void i_enter_a_correct_password_with_an_incorrect_username() throws Throwable {
 		System.out.println("Entering incorrect username with correct password");
-		Login.login("NotAUsername", "TestAdmin", driver);
+		Login.login(LoginUtil.getPropertyValue("notAUsername"), LoginUtil.getPropertyValue("adminPW"), driver);
 	}
 
 	@When("^I enter an incorrect password with an incorrect username$")
 	public void i_enter_an_incorrect_password_with_an_incorrect_username() throws Throwable {
-		Login.login("NotAUsername", "NotAPassword", driver);
+		Login.login(LoginUtil.getPropertyValue("notAUsername"), LoginUtil.getPropertyValue("notAPassword"), driver);
 	}
 	
 	@When("^I enter a correct username with an incorrect password$")
 	public void i_enter_a_correct_username_with_an_incorrect_password() throws Throwable {
-		Login.login("TestAdmin","NotAPassword", driver);
+		Login.login(LoginUtil.getPropertyValue("adminUN"),LoginUtil.getPropertyValue("notAPassword"), driver);
 	}
 
 	@When("^I enter a correct password without a username$")
 	public void i_enter_a_correct_password_without_a_username() throws Throwable {
-	    Login.login("", "TestAdmin", driver);
+	    Login.login("", LoginUtil.getPropertyValue("adminPW"), driver);
 	}
 	
 	@When("^if I click Log out$")
