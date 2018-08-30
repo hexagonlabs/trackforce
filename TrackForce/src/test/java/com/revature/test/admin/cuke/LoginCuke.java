@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import com.revature.test.admin.pom.HomeTab;
 import com.revature.test.admin.pom.Login;
 import com.revature.test.utils.LoginUtil;
+import com.revature.test.utils.ServiceHooks;
 import com.revature.test.utils.TestConfig;
 import com.revature.test.utils.WebDriverUtil;
 
@@ -25,9 +26,25 @@ public class LoginCuke {
 	
 	@Given("^I connect to caliber$")
 	public void i_connect_to_caliber(){
+		System.out.println("Connecting to caliber");
 		driver = WebDriverUtil.getChromeDriver();
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.get(TestConfig.getBaseURL());
+		ServiceHooks.driver = driver;
+	}
+	
+	@Given("^I login as an Administrator$")
+	public void i_login_as_an_administrator() throws Throwable {
+		System.out.println("Running administrator login meta");
+		i_enter_the_correct_admin_login_information();
+		i_click_Submit();
+	}
+	
+	@Given("^I login as an Associate$")
+	public void i_login_as_an_associate() throws Throwable {
+		System.out.println("Running associate login meta");
+		i_enter_the_correct_associate_login_information();
+		i_click_Submit();
 	}
 	
 	@And("^the login page loads$")
